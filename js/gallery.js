@@ -5,11 +5,14 @@ function activateGallery() {
   let mainImage = document.querySelector("#gallery-photo img");
 
   thumbnails.forEach(function(thumbnail) {
-    thumbnail.addEventListener("click", function() {
-      // Set clicked image as main image.
+      // Preload large images (to avoid delay after clicking):
       let newImageSrc = thumbnail.dataset.largeVersion;
+      let largeVersion = new Image();
+      largeVersion.src = newImageSrc;
+
       
-      
+    thumbnail.addEventListener("click", function() {
+      // Set clicked image as main image.     
       mainImage.setAttribute("src", newImageSrc);
       mainImage.setAttribute("alt", thumbnail.alt);
       // Selecting the image that's current (red frame):
