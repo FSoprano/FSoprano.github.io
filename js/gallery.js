@@ -12,6 +12,16 @@ function activateGallery() {
       
       mainImage.setAttribute("src", newImageSrc);
       mainImage.setAttribute("alt", thumbnail.alt);
+      // Selecting the image that's current (red frame):
+      let currentClass = "current";
+      document.querySelector(`.${currentClass}`).classList.remove(currentClass);
+      thumbnail.parentNode.classList.add(currentClass);
+      // Changing the information in the right column:
+      let galleryInfo = document.querySelector("#gallery-info");
+      let title       = galleryInfo.querySelector(".title");
+      let description = galleryInfo.querySelector(".description");
+      title.innerHTML       = thumbnail.dataset.title;
+      description.innerHTML = thumbnail.dataset.description;
     });
   });
 }
